@@ -1,0 +1,83 @@
+-- =============================================
+-- 5. CONSULTA PRINCIPAL PARA LOOKER STUDIO
+-- =============================================
+SELECT
+  -- Dimensões de Cliente
+  dc.cli_id,
+  dc.cli_nome,
+  dc.cli_segmento,
+  dc.cli_bairro,
+
+  -- Dimensões de Produto
+  dp.prod_id,
+  dp.prod_nome,
+  dp.prod_preco_kg,
+
+  -- Fatos de Vendas
+  fv.fat_venda_id,
+  fv.fat_data,
+  fv.fat_quantidade,
+  fv.fat_valor_total,
+  fv.fat_custo_frete,
+  fv.fat_status,
+
+  -- Métricas calculadas
+  (fv.fat_valor_total / fv.fat_quantidade) AS preco_medio_por_unidade,
+  CASE WHEN fv.fat_status = 'Entregue' THEN 'Sim' ELSE 'Não' END AS entregue_no_prazo,
+  (fv.fat_valor_total - fv.fat_custo_frete) AS lucro_bruto
+FROM
+  `project-gelado.gelado.tb_fat_vendas` fv
+LEFT JOIN
+  `project-gelado.gelado.tb_dim_cliente` dc ON fv.fat_cli_id = dc.cli_id
+LEFT JOIN
+  `project-gelado.gelado.tb_dim_produto` dp ON fv.fat_prod_id = dp.prod_id;
+
+
+CREATE OR REPLACE VIEW `project-gelado.gelado.view_vendas_looker` AS
+SELECT
+  -- ===== DIMENSÕES DE CLIENTE =====
+  dc.cli_id,
+  dc.cli_nome,
+  dc.cli_segmento,
+  dc.cli_bairro,
+
+  -- ===== DIMENSÕES DE PRODUTO =====
+  dp.prod_id,
+  dp.prod_nome,
+  dp.prod_preco_kg,
+
+  -- ===== FATOS DE VENDAS =====
+  fv.fat_venda_id,
+  fv.fat_data,
+  EXTRACT(YEAR FROM fv.fat_data) AS ano,
+  EXTRACT(MONTH FROM fv.fat_data) AS mes,
+  EXTRACT(DAY FROM fv.fat_data) AS dia,
+  FORMAT_DATE('%Y-%m', fv.fat_data) AS ano_mes,
+  fv.fat_quantidade,
+  fv.fat_valor_total,
+  fv.fat_custo_frete,
+  fv.fat_status,
+
+  -- ===== MÉTRICAS CALCULADAS =====
+  (fv.fat_valor_total / fv.fat_quantidade) AS preco_medio_por_unidade,
+  (fv.fat_valor_total - fv.fat_custo_frete) AS lucro_bruto,
+  CASE WHEN fv.fat_status = 'Entregue' THEN 'Sim' ELSE 'Não' END AS entregue_no_prazo,
+  CASE
+    WHEN fv.fat_quantidade >= 50 THEN 'Grande'
+    WHEN fv.fat_quantidade >= 20 THEN 'Médio'
+    ELSE 'Pequeno'
+  END AS tamanho_pedido,
+
+  -- ===== DIMENSÕES DE TEMPO (para filtros) =====
+  DATE_TRUNC(fv.fat_data, MONTH) AS data_mes,
+  DATE_TRUNC(fv.fat_data, YEAR) AS data_ano,
+  FORMAT_DATE('%A', fv.fat_data) AS dia_da_semana
+
+FROM
+  `project-gelado.gelado.tb_fat_vendas` fv
+LEFT JOIN
+  `project-gelado.gelado.tb_dim_cliente` dc ON fv.fat_cli_id = dc.cli_id
+LEFT JOIN
+  `project-gelado.gelado.tb_dim_produto` dp ON fv.fat_prod_id = dp.prod_id
+WHERE
+  fv.fat_venda_id IS NOT NULL;
