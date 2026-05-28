@@ -1,8 +1,8 @@
-```md
-# 🧊 Gelado Intelligence
+
+#  Gelado Intelligence
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-blue">
+  <img src="https://img.shields.io/badge/Status-Desenvolvido-blue">
   <img src="https://img.shields.io/badge/BI-Industrial-success">
   <img src="https://img.shields.io/badge/Logística-Inteligente-orange">
   <img src="https://img.shields.io/badge/Data-Analytics-purple">
@@ -10,7 +10,7 @@
 
 ---
 
-# 📌 Sobre o Projeto
+#  Sobre o Projeto
 
 O **Gelado Intelligence** é um projeto de Business Intelligence voltado para empresas de distribuição de gelo, focado em:
 
@@ -25,23 +25,23 @@ O sistema transforma dados operacionais em indicadores estratégicos para auxili
 
 ---
 
-# 🎯 Objetivos Estratégicos
+#  Objetivos Estratégicos
 
 ## ⚡ Otimização Energética
 Monitorar consumo energético e eficiência produtiva.
 
-## 🚚 Eficiência Logística
+##  Eficiência Logística
 Melhorar ocupação da frota e reduzir custos operacionais.
 
-## 💰 Rentabilidade Real
+##  Rentabilidade Real
 Identificar margem de lucro por cliente, região e canal.
 
-## ❄️ Controle de Perdas
+##  Controle de Perdas
 Reduzir desperdícios e derretimento durante transporte e armazenagem.
 
 ---
 
-# 📊 KPIs do Projeto
+#  KPIs do Projeto
 
 | KPI | Descrição |
 |------|------------|
@@ -54,21 +54,21 @@ Reduzir desperdícios e derretimento durante transporte e armazenagem.
 
 ---
 
-# 📈 Dashboard Estratégico
+#  Dashboard Estratégico
 
-## 🏭 Produção
+##  Produção
 - Controle produtivo
 - Consumo energético
 - Eficiência industrial
 - Capacidade ociosa
 
-## 🚛 Logística
+##  Logística
 - Rotas
 - Custos de entrega
 - Volume transportado
 - Ocupação da frota
 
-## 💵 Financeiro
+##  Financeiro
 - Receita
 - Custos
 - EBITDA
@@ -76,7 +76,7 @@ Reduzir desperdícios e derretimento durante transporte e armazenagem.
 
 ---
 
-# 📋 Perguntas Respondidas
+#  Perguntas Respondidas
 
 O sistema responde questões importantes como:
 
@@ -90,7 +90,7 @@ O sistema responde questões importantes como:
 
 ---
 
-# 🛠️ Tecnologias Utilizadas
+#  Tecnologias Utilizadas
 
 ## Banco de Dados
 - MySQL
@@ -109,7 +109,7 @@ O sistema responde questões importantes como:
 
 ---
 
-# 📦 Estrutura de Dados
+#  Estrutura de Dados
 
 ## Clientes
 Informações cadastrais e histórico de compras.
@@ -137,7 +137,7 @@ Controle de categorias:
 
 ---
 
-# 📊 Indicadores Monitorados
+#  Indicadores Monitorados
 
 ✅ Produção diária  
 ✅ Consumo energético  
@@ -150,7 +150,7 @@ Controle de categorias:
 
 ---
 
-# 🚀 Benefícios do Projeto
+#  Benefícios do Projeto
 
 - Redução de desperdícios
 - Maior eficiência operacional
@@ -161,13 +161,13 @@ Controle de categorias:
 
 ---
 
-# 🔐 Visão Estratégica
+#  Visão Estratégica
 
 O projeto busca transformar a distribuição de gelo em uma operação orientada por dados, utilizando Business Intelligence como ferramenta central de crescimento e escalabilidade.
 
 ---
 
-# 👨‍💻 Desenvolvido por
+#  Desenvolvido por
 
 ## [Nome da Empresa]
 
@@ -175,7 +175,7 @@ Distribuição Inteligente • Logística • Business Intelligence
 
 ---
 
-# 📄 Licença
+#  Licença
 
 Este projeto é destinado para fins empresariais, acadêmicos e operacionais.
 
