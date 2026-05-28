@@ -169,7 +169,7 @@ O projeto busca transformar a distribuição de gelo em uma operação orientada
 
 #  Desenvolvido por
 
-## [Nome da Empresa]
+## [Murilo da Silva Costa e Joao Vitor Pinazo]
 
 Distribuição Inteligente • Logística • Business Intelligence
 
@@ -181,3 +181,5 @@ Este projeto é destinado para fins empresariais, acadêmicos e operacionais.
 
 Todos os direitos reservados.
 ```
+## Link Do LOOKER
+https://datastudio.google.com/s/hDvgPsunVYQ
