@@ -1,0 +1,49 @@
+-- =============================================
+-- 1. TABELA DE DIMENSÃO: CLIENTES
+-- =============================================
+CREATE OR REPLACE TABLE `project-gelado.gelado.tb_dim_cliente` AS
+SELECT
+  CAST(REGEXP_EXTRACT(id_cliente, r'C(\d+)') AS INT64) AS cli_id,
+  nome_cliente AS cli_nome,
+  canal AS cli_segmento,
+  bairro AS cli_bairro
+FROM `project-gelado.gelado.tb_clientes`;
+
+-- =============================================
+-- 2. TABELA DE DIMENSÃO: PRODUTOS
+-- =============================================
+CREATE OR REPLACE TABLE `project-gelado.gelado.tb_dim_produto` AS
+SELECT
+  CAST(REGEXP_EXTRACT(id_produto, r'P(\d+)') AS INT64) AS prod_id,
+  nome_produto AS prod_nome,
+  CAST(REPLACE(preco_kg, ',', '.') AS FLOAT64) AS prod_preco_kg
+FROM `project-gelado.gelado.tb_produtos`;
+
+-- =============================================
+-- 3. TABELA DE FATOS: VENDAS
+-- =============================================
+CREATE OR REPLACE TABLE `project-gelado.gelado.tb_fat_vendas` AS
+SELECT
+  CAST(REGEXP_EXTRACT(id_venda, r'V(\d+)') AS INT64) AS fat_venda_id,
+  CAST(REGEXP_EXTRACT(id_cliente, r'C(\d+)') AS INT64) AS fat_cli_id,
+  CAST(REGEXP_EXTRACT(id_produto, r'P(\d+)') AS INT64) AS fat_prod_id,
+  CAST(data_venda AS DATE) AS fat_data,
+  CAST(quantidade_pacotes AS INT64) AS fat_quantidade,
+  CAST(REPLACE(valor_total, ',', '.') AS FLOAT64) AS fat_valor_total,
+  CAST(REPLACE(custo_frete, ',', '.') AS FLOAT64) AS fat_custo_frete,
+  status AS fat_status
+FROM `project-gelado.gelado.tb_vendas`;
+
+-- =============================================
+-- 4. TABELA DE FATOS: PRODUÇÃO (Opcional)
+-- =============================================
+CREATE OR REPLACE TABLE `project-gelado.gelado.tb_fat_producao` AS
+SELECT
+  CAST(REGEXP_EXTRACT(id_producao, r'PRD(\d+)') AS INT64) AS fat_prod_id,
+  CAST(data AS DATE) AS fat_data,
+  CAST(REGEXP_EXTRACT(id_maquina, r'M(\d+)') AS INT64) AS fat_maquina_id,
+  turno AS fat_turno,
+  CAST(REPLACE(kg_produzido, ',', '.') AS FLOAT64) AS fat_kg_produzido,
+  CAST(REPLACE(kg_perda, ',', '.') AS FLOAT64) AS fat_kg_perda,
+  CAST(REPLACE(kwh_gasto, ',', '.') AS FLOAT64) AS fat_kwh_gasto
+FROM `project-gelado.gelado.tb_producao`;
